@@ -19,21 +19,21 @@ permalink: dsl.html
 
 #### <a id="source"></a>source
 
-Add a package mirror.
+패키지 미러를 추가합니다.
 
 {% highlight cl %}
 (source ALIAS)
 (source NAME URL)
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (source melpa)
 (source "melpa" "http://melpa.milkbox.net/packages/")
 {% endhighlight %}
 
-Available aliases:
+사용가능한 미러의 약어는 아래와 같습니다.
 
  * `gnu` (<http://elpa.gnu.org/packages/>)
  * `melpa` (<http://melpa.milkbox.net/packages/>)
@@ -43,13 +43,13 @@ Available aliases:
 
 #### <a id="package"></a>package
 
-Define this package (used only for package development).
+패키지를 정의합니다.(패키지 개발에서만 사용됩니다)
 
 {% highlight cl %}
 (package NAME VERSION DESCRIPTION)
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (package "ecukes" "0.2.1" "Cucumber for Emacs.")
@@ -65,7 +65,7 @@ file is relative to the directory containing the `Cask` file.
 (package-file FILENAME)
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (package-file "foo.el")
@@ -73,13 +73,13 @@ Example:
 
 #### <a id="depends-on"></a>depends-on
 
-Add a dependency.
+의존 라이브러리를 추가합니다.
 
 {% highlight cl %}
 (depends-on NAME [ARGS])
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (depends-on "ecukes")
@@ -90,15 +90,15 @@ Example:
 (depends-on "magit" :git "https://github.com/magit/magit.git" :files ("*.el" (:exclude "magit-svn.el")))
 {% endhighlight %}
 
-#### <a id="development"></a>development
+#### <a id="development"></a>개발
 
-Set scope to development.
+의존 라이브러리를 개발 시에만 사용하도록 설정합니다.
 
 {% highlight cl %}
 (development [DEPENDENCIES])
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (development
@@ -108,13 +108,13 @@ Example:
 
 #### <a id="files"></a>files
 
-Specify list of files that are included in this project.
+이 프로젝트에 포함되는 파일을 명시합니다.
 
 {% highlight cl %}
 (files [FILES])
 {% endhighlight %}
 
-Example:
+예제:
 
 {% highlight cl %}
 (files "foo.el")

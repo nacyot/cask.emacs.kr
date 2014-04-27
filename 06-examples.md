@@ -1,16 +1,16 @@
 ---
-title: Examples
+title: 예제
 layout: default
 permalink: examples.html
 ---
 
-## Examples
+## 예제
 
 ---
 
-Here are a few examples of how a `Cask`-file might look like.
+아래는 `Cask`파일 예제입니다.
 
-### Emacs configuration
+### Emacs 설정
 
 {% highlight cl %}
 (source melpa)
@@ -28,7 +28,7 @@ Here are a few examples of how a `Cask`-file might look like.
 (depends-on "yasnippet")
 {% endhighlight %}
 
-### package development
+### 패키지 개발
 
 {% highlight cl %}
 (source melpa)
@@ -43,9 +43,9 @@ Here are a few examples of how a `Cask`-file might look like.
  (depends-on "ert-runner"))
 {% endhighlight %}
 
-### I still don't get it, give me some real examples
+### 실제로 사용되는 예제를 보고싶다면
 
-These are some projects and configurations using Cask:
+아래 프로젝트들은 의존 라이브러리를 Cask로 관리하고 있습니다.
 
 * [rejeep/emacs](https://github.com/rejeep/emacs)
 * [prodigy](https://github.com/rejeep/prodigy.el)

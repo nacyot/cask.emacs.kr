@@ -1,50 +1,45 @@
 ---
-title: Usage
+title: 사용법
 layout: default
 permalink: usage.html
 ---
 
-## Usage
+## 사용법
 
 ---
 
-Start off by creating a file called `Cask` in the project root. Use
-the `init` command to create a `Cask`-file automatically, containing
-boilerplate code.
+우선 `Cask` 파일을 Emacs Lisp 프로젝트 루트에 만들어야합니다. `init` 명령어를 통해 간단한 골격을 포함한 `Cask` 파일을 자동으로 생성할 수 있습니다.
 
 {% highlight bash %}
 $ cask init [--dev]
 {% endhighlight %}
 
-_(Use `--dev` if the project is for package development)_
+_(`--dev` 옵션은 개발 모드로 Cask를 실행할 때 사용합니다)_
 
-If you are using Cask for your Emacs configuration, add this to your
-`.emacs` file:
+Emacs 설정을 위해 Cask를 사용하고자 할 때는 아래 내용을 `.emacs`에 추가해줍니다.
 
 {% highlight cl %}
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 {% endhighlight %}
 
-To install all dependencies, run:
+모든 의존 라이브러리를 설치하려면 아래 명령어를 실행하세요.
 
 {% highlight bash %}
 $ cask [install]
 {% endhighlight %}
 
-This will create a directory called `.cask`, containing all dependencies.
+이 명령어는 `.cask` 디렉토리를 만들고 모든 의존 라이브러리를 설치합니다.
 
-The commands below execute using the `emacs` binary. To specify a
-custom Emacs, use the `EMACS` environment variable, for example:
+이 명령어는 `emacs`를 사용해서 실행됩니다. 따라서 특정한 버전의 Emacs를 사용하고자 할 때는 `EMACS` 환경변수를 아래와 같이 지정합니다.
 
 {% highlight bash %}
 $ EMACS="$(evm bin emacs-24.1)" cask command
 {% endhighlight %}
 
-## Commands & Options
+## 명령어와 옵션
 
-Cask's commands and options are briefly described below. For full
-documentation, use `cask help`.
+아래에서는 Cask의 명령과 옵션에 대해서 간략히 소개합니다. 전체 문서는 `cask help` 명령어를 통해서 확인해주세요.
 
 * [exec](#exec)
 * [help, --help, -h](#help)
@@ -71,14 +66,13 @@ documentation, use `cask help`.
 * [--path](#option-path)
 * [--verbose](#option-verbose)
 
-### Commands
+### 명령어
 
 ---
 
 #### <a id="exec"></a>exec
 
-Execute command with correct `PATH` (see [path](#path)) and
-`EMACSLOADPATH` (see [load-path](#load-path)) set up.
+exec 명령어를 사용할 때는 `PATH`([path](#path) 참조)와 `EMACSLOADPATH`([load-path](#load-path) 환경변수를 올바르게 설정해야합니다.
 
 {% highlight bash %}
 $ cask exec echo foo
@@ -88,7 +82,7 @@ $ cask exec ert-runner --pattern performance
 
 #### <a id="help"></a>help, --help, -h
 
-Show Cask usage information.
+Cask 사용법을 출력합니다.
 
 {% highlight bash %}
 $ cask help
@@ -99,8 +93,7 @@ $ cask --help command
 
 #### <a id="info"></a>info
 
-Show information about the project, such as name, description and
-version.
+특정 프로젝트의 이름, 설명, 버전과 같은 정보를 출력합니다.
 
 {% highlight bash %}
 $ cask info
@@ -108,8 +101,7 @@ $ cask info
 
 #### <a id="init"></a>init
 
-Create new `Cask`-file. If the project is for package development, use
-the `--dev` option.
+새로운 `Cask` 파일을 생성합니다. 패키지 개발 용도로 사용한다면 `--dev` 옵션을 사용해주세요.
 
 {% highlight bash %}
 $ cask init       # For Emacs configuration
@@ -118,8 +110,7 @@ $ cask init --dev # For package development
 
 #### <a id="install"></a>install
 
-This is the default command, which installs all runtime and
-development dependencies specified in the `Cask`-file.
+이는 Cask의 기본 명령어로 모든 런타임과 `Cask`에 정의된 개발에 의존된 라이브러를 전부 설치합니다.
 
 {% highlight bash %}
 $ cask
@@ -128,7 +119,7 @@ $ cask install
 
 #### <a id="list"></a>list
 
-List all runtime and development dependencies.
+모든 런타임과 개발에 의존된 라이브러리 목록을 출력합니다.
 
 {% highlight bash %}
 $ cask list
@@ -136,13 +127,9 @@ $ cask list
 
 #### <a id="load-path"></a>load-path
 
-Print `EMACSLOADPATH`-friendly string with path to all dependencies to
-this project.
+현재 프로젝트가 의존하고 있는 모든 라이브러리들의 경로를 `EMACSLOADPATH` 환경변수에서 사용가능한 문자열로 출력해줍니다.
 
-The [exec](#exec) command includes the output of this command
-automatically. This means that if the command executed is an Emacs
-process, there's no hassle with the `load-path`, just require the
-dependencies.
+[exec](#exec) 명령어를 사용할 때 `load-path` 명령어에서 출력되는 경로들을 참조합니다. 즉 emacs와 관련된 명령어를 실행할 때 `load-path`에 대해 고민하지 않아도 됩니다. 의존 라이브러리 추가만 하면 해당하는 라이브러리의 경로는 cask가 알아서 추가해줍니다. 
 
 {% highlight bash %}
 $ cask load-path
@@ -150,8 +137,7 @@ $ cask load-path
 
 #### <a id="outdated"></a>outdated
 
-Show list of all outdated dependencies. That is dependencies that have
-a more recent version available for installation.
+오래된 의존 라이브러리 리스트를 전부 출력합니다. 오래된 의존 라이브러리란 최신 버전으로 업그레이드 가능한 설치되어있는 라이브러리를 의미합니다.
 
 {% highlight bash %}
 $ cask outdated
@@ -159,8 +145,8 @@ $ cask outdated
 
 #### <a id="package"></a>package
 
-Create a `-pkg.el` file (see
-<http://www.gnu.org/software/emacs/manual/html_node/elisp/Multi_002dfile-Packages.html#Multi_002dfile-Packages>).
+`-pkg.el` 파일을 생성합니다. (
+<http://www.gnu.org/software/emacs/manual/html_node/elisp/Multi_002dfile-Packages.html#Multi_002dfile-Packages>를 참조하세요).
 
 {% highlight bash %}
 $ cask package
@@ -168,8 +154,7 @@ $ cask package
 
 #### <a id="package-directory"></a>package-directory
 
-Print path to package directory, that is the path to the directory
-where all dependencies are installed (`.cask/EMACS-VERSION/elpa`).
+모든 의존 라이브러리가 설치되는 디렉토리 경로를 출력합니다.(`.cask/EMACS-VERSION/elpa`)
 
 {% highlight bash %}
 $ cask package-directory
@@ -177,11 +162,9 @@ $ cask package-directory
 
 #### <a id="path"></a>path
 
-Print `PATH` and prepend path to all directories called `bin` in this
-projects dependencies.
+`PATH`를 출력하고 의존 라이브러리의 모든 `bin` 디렉토리를 출력합니다.
 
-For example if this project depends on `ecukes`, this command will
-include `.cask/EMACS-VERSION/elpa/ecukes-VERSION/bin`.
+예를 들어 프로젝트가 `ecukes`에 의존하고 있다면 이 명령어는 `.cask/EMACS-VERSION/elpa/ecukes-VERSION/bin`를 포함합니다.
 
 {% highlight bash %}
 $ cask path
@@ -189,7 +172,7 @@ $ cask path
 
 #### <a id="update"></a>update
 
-Update all dependencies.
+모든 의존 라이브러리를 업데이트합니다.
 
 {% highlight bash %}
 $ cask update
@@ -197,7 +180,7 @@ $ cask update
 
 #### <a id="upgrade-cask"></a>upgrade-cask
 
-Upgrade Cask and all its dependencies.
+Cask와 의존 라이브러리를 업그레이드합니다.
 
 {% highlight bash %}
 $ cask upgrade-cask
@@ -205,7 +188,7 @@ $ cask upgrade-cask
 
 #### <a id="version"></a>version
 
-Print version of this package.
+패키지의 버전을 출력합니다.
 
 {% highlight bash %}
 $ cask version
@@ -213,7 +196,7 @@ $ cask version
 
 #### <a id="files"></a>files
 
-Print list of package files.
+패키지 파일 리스트를 출력합니다.
 
 {% highlight bash %}
 $ cask files
@@ -221,8 +204,7 @@ $ cask files
 
 #### <a id="build"></a>build
 
-Byte compile all package files. The `.elc` files are placed in the
-same directory as the source file.
+모든 패키지 파일을 바이트 컴파일 합니다. 모든 `.elc` 파일은 source 디렉토리와 같은 곳에 위치합니다.
 
 {% highlight bash %}
 $ cask build
@@ -230,7 +212,7 @@ $ cask build
 
 #### <a id="clean-elc"></a>clean-elc
 
-Remove byte compiled files generated from the `build` command.
+`build` 명령어로 만들어진 바이트 컴파일 파일들을 삭제합니다.
 
 {% highlight bash %}
 $ cask clean-elc
@@ -238,7 +220,7 @@ $ cask clean-elc
 
 #### <a id="link"></a>link
 
-Handle package links.
+패키지 링크를 관리합니다.
 
 {% highlight bash %}
 $ cask link list                 # List all links
@@ -248,21 +230,20 @@ $ cask link delete ecukes        # Delete Ecukes link
 
 #### <a id="package"></a>package
 
-Build a package (`.el` or `.tar`) and place in the `dist` (or
-specified) directory.
+`.el`이나 `.tar`로 된 패키지를 생성하고 `dist` 디렉토리에 복사합니다.
 
 {% highlight bash %}
 $ cask package
 $ cask package /path/to/dist
 {% endhighlight %}
 
-### Options
+### 옵션
 
 ---
 
 #### <a id="option-version"></a>--version
 
-Print Cask's version.
+Cask의 버전을 출력합니다.
 
 {% highlight bash %}
 $ cask --version
@@ -270,8 +251,7 @@ $ cask --version
 
 #### <a id="option-dev"></a>--dev
 
-Perform action in development mode. This option does only take affect
-for some commands. See resp. command for that information.
+명령어를 개발 모드(development mode)로 실행합니다. 이 옵션이 모든 명령어에 적용되지는 않습니다. 각각의 명령어 설명을 읽어주세요.
 
 {% highlight bash %}
 $ cask --dev
@@ -279,7 +259,7 @@ $ cask --dev
 
 #### <a id="option-debug"></a>--debug
 
-Enable debug information.
+디버그 정보를 출력합니다.
 
 {% highlight bash %}
 $ cask --debug
@@ -287,7 +267,7 @@ $ cask --debug
 
 #### <a id="option-path"></a>--path
 
-Change default directory to path before executing command.
+명령어를 실행하기 전에 작업 디렉토리를 path 옵션에 지정한 곳으로 변경합니다.
 
 {% highlight bash %}
 $ cask --path /path/to
@@ -295,8 +275,7 @@ $ cask --path /path/to
 
 #### <a id="option-verbose"></a>--verbose
 
-Cask tries to hide as much output as possible by default. With this
-option, all output will show.
+Cask는 출력사항이 많을 때 기본적으로 이를 최대한 숨겨줍니다. 이 옵션을 사용하면 숨기는 내용없이 모든 내용이 출력됩니다.
 
 {% highlight bash %}
 $ cask install --verbose

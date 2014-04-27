@@ -8,17 +8,11 @@ permalink: api.html
 
 ---
 
-Cask has an extensive API, which is briefly described in this
-document. For full documentation of each function, read the function
-doc-string.
+이 문서는 Cask 확장 API를 간략히 설명합니다. 각 함수에 대한 자세한 설명은 doc-string을 읽어주세요.
 
-As you will see, almost every API function takes a `bundle` as first
-argument. A bundle is an object that describes the current Cask
-project. You should not modify this object directly, but use the API
-functions to do so.
+아래에서 보이듯이 모든 함수는 첫번째 인자로 `bundle`을 받습니다. 번들이란 현재 Cask 프로젝트를 의미합니다. 번들 객체를 직접 조작하지 마세요. API 함수들을 이용해서 조작하시기 바랍니다.
 
-To create a `bundle` object, use either `cask-setup` or
-`cask-initialize`, which are described below.
+`bundle` 객체를 처음 만드려면 `cask-setup`이나 `cask-initialize` 함수를 사용할 수 있습니다.
 
 * [cask-setup](#cask-setup) `(project-path)`
 * [cask-initialize](#cask-initialize) `(&optional project-path)`
@@ -56,12 +50,11 @@ To create a `bundle` object, use either `cask-setup` or
 * [cask-linked-p](#cask-linked-p) `(bundle name)`
 * [cask-package](#cask-package) `(bundle &optional target-dir)`
 
-### Documentation and Examples
+### 문서와 예제
 
 #### <a id="cask-setup"></a>cask-setup `(project-path)`
 
-Create a `bundle` object for `project-path`. Use this function for
-packages and `cask-initialize` for your local Emacs configuration.
+`project-path`에  `bundle` 객체를 생성합니다. `cask-setup`은 패키지를 관리하는데 사용합니다. Emacs 설정을 할 때는 `cask-initialize`을 사용하세요.
 
 {% highlight cl %}
 (let ((bundle (cask-setup "/path/to/project")))
@@ -71,9 +64,7 @@ packages and `cask-initialize` for your local Emacs configuration.
 
 #### <a id="cask-initialize"></a>cask-initialize `(&optional project-path)`
 
-Like `cask-setup`, but also initializes all dependencies. Use this
-function for your local Emacs configuration and `cask-setup` for
-packages.
+`cask-setup`와 비슷한 기능을 하지만 추가적으로 모든 의존 라이브러리를 초기화합니다. `cask-initialize`는 Emacs를 설정할 때 사용합니다. 패키지를 만들 때는 `cask-setup`을 사용하세요.
 
 {% highlight cl %}
 (let ((bundle (cask-initialize "/path/to/project")))
@@ -83,7 +74,7 @@ packages.
 
 #### <a id="cask-update"></a>cask-update `(bundle)`
 
-Update dependencies and return list of updated dependencies.
+의존 라이브러리를 업데이트하고 업데이트된 의존 라이브러리의 리스트를 출력합니다.
 
 {% highlight cl %}
 (let ((updated (cask-update bundle)))
@@ -93,7 +84,7 @@ Update dependencies and return list of updated dependencies.
 
 #### <a id="cask-outdated"></a>cask-outdated `(bundle)`
 
-Return a list of all outdated dependencies.
+최신 버전이 아닌 모든 의존 라이브러리의 목록을 리턴합니다.
 
 {% highlight cl %}
 (let ((outdated (cask-outdated bundle)))
@@ -103,7 +94,7 @@ Return a list of all outdated dependencies.
 
 #### <a id="cask-install"></a>cask-install `(bundle)`
 
-Install dependencies.
+의존 라이브러리를 설치합니다.
 
 {% highlight cl %}
 (cask-install bundle)
@@ -111,7 +102,7 @@ Install dependencies.
 
 #### <a id="cask-caskify"></a>cask-caskify `(bundle &optional dev-mode)`
 
-Create `Cask`-file.
+`Cask` 파일을 생성합니다.
 
 {% highlight cl %}
 (cask-caskify bundle)           ;; For Emacs configuration
@@ -120,7 +111,7 @@ Create `Cask`-file.
 
 #### <a id="cask-package-name"></a>cask-package-name `(bundle)`
 
-Return package name.
+패키지 이름을 리턴합니다.
 
 {% highlight cl %}
 (cask-package-name bundle) ;; => 'foo
@@ -128,7 +119,7 @@ Return package name.
 
 #### <a id="cask-package-version"></a>cask-package-version `(bundle)`
 
-Return package version.
+패키지 버전을 리턴합니다.
 
 {% highlight cl %}
 (cask-package-version bundle) ;; => "0.1.2"
@@ -136,7 +127,7 @@ Return package version.
 
 #### <a id="cask-package-description"></a>cask-package-description `(bundle)`
 
-Return package description.
+패키지 설명을 리턴합니다.
 
 {% highlight cl %}
 (cask-package-description bundle) ;; => "Description for Foo package"
@@ -144,7 +135,7 @@ Return package description.
 
 #### <a id="cask-version"></a>cask-version `()`
 
-Return Cask's version.
+Cask 버전을 리턴합니다.
 
 {% highlight cl %}
 (cask-version)
@@ -152,7 +143,7 @@ Return Cask's version.
 
 #### <a id="cask-load-path"></a>cask-load-path `(bundle)`
 
-Return `load-path` including dependencies.
+의존 라이브러리가 있는 `load-path`를 리턴합니다.
 
 {% highlight cl %}
 (cask-load-path bundle) ;; => '("/path/to/.cask/24.3.1/elpa/foo-1.2.3" ...)
@@ -160,7 +151,7 @@ Return `load-path` including dependencies.
 
 #### <a id="cask-exec-path"></a>cask-exec-path `(bundle)`
 
-Return `exec-path` including dependencies.
+의존 라이브러리가 있는 `exec-path`를 리턴합니다.
 
 {% highlight cl %}
 (cask-exec-path bundle) ;; => '("/path/to/.cask/24.3.1/elpa/foo-1.2.3/bin" ...)
@@ -168,7 +159,7 @@ Return `exec-path` including dependencies.
 
 #### <a id="cask-elpa-path"></a>cask-elpa-path `(bundle)`
 
-Return path to elpa directory.
+elpa 디렉토리 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-elpa-path bundle) ;; => "/path/to/.cask/24.3.1/elpa"
@@ -176,7 +167,7 @@ Return path to elpa directory.
 
 #### <a id="cask-runtime-dependencies"></a>cask-runtime-dependencies `(bundle &optional deep)`
 
-Return list of runtime dependencies.
+런타임 의존 라이브러리 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-runtime-dependencies bundle)
@@ -185,7 +176,7 @@ Return list of runtime dependencies.
 
 #### <a id="cask-development-dependencies"></a>cask-development-dependencies `(bundle &optional deep)`
 
-Return list of development dependencies.
+개발 의존 라이브러리의 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-development-dependencies bundle)
@@ -194,7 +185,7 @@ Return list of development dependencies.
 
 #### <a id="cask-dependencies"></a>cask-dependencies `(bundle &optional deep)`
 
-Return list of runtime and development dependencies.
+런타임 의존 라이브러리와 개발 의존 라이브러리 전체 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-dependencies bundle)
@@ -203,7 +194,7 @@ Return list of runtime and development dependencies.
 
 #### <a id="cask-installed-dependencies"></a>cask-installed-dependencies `(bundle &optional deep)`
 
-Return list of installed dependencies.
+현재 설치된 의존 라이브러리 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-installed-dependencies bundle)
@@ -212,7 +203,7 @@ Return list of installed dependencies.
 
 #### <a id="cask-has-dependency"></a>cask-has-dependency `(bundle name)`
 
-Return true if project has dependency with `name`.
+프로젝트가 `name`이라는 라이브러리에 의존성이 있으면 true를 리턴합니다.
 
 {% highlight cl %}
 (cask-has-dependency bundle 'foo)
@@ -220,7 +211,7 @@ Return true if project has dependency with `name`.
 
 #### <a id="cask-find-dependency"></a>cask-find-dependency `(bundle name)`
 
-Return dependency with `name`.
+`name`으로 검색된 의존 라이브러리를 리턴합니다.
 
 {% highlight cl %}
 (cask-find-dependency bundle 'foo)
@@ -228,7 +219,7 @@ Return dependency with `name`.
 
 #### <a id="cask-define-package-string"></a>cask-define-package-string `(bundle)`
 
-Return `define-package` string used for `-pkg.el` files.
+`-pkg.el`에서 사용하는 `define-package` 문자열을 리턴합니다.
 
 {% highlight cl %}
 (cask-define-package-string bundle) ;; => "(define-package ...)"
@@ -236,7 +227,7 @@ Return `define-package` string used for `-pkg.el` files.
 
 #### <a id="cask-define-package-file"></a>cask-define-package-file `(bundle)`
 
-Return path to `-pkg.el` file.
+`-pkg.el` 파일의 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-define-package-file bundle) ;; => "/path/to/project-pkg.el"
@@ -244,7 +235,7 @@ Return path to `-pkg.el` file.
 
 #### <a id="cask-dependency-path"></a>cask-dependency-path `(bundle name)`
 
-Return path to dependency with `name`.
+`name`이라는 이름을 가진 의존 라이브러리의 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-dependency-path bundle 'foo) ;; => "/path/to/.cask/24.3.1/elpa/foo-1.3.3"
@@ -252,7 +243,7 @@ Return path to dependency with `name`.
 
 #### <a id="cask-path"></a>cask-path `(bundle)`
 
-Return path to project root.
+프로젝트 루트 디렉토리 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-path bundle) ;; => "/path/to"
@@ -260,7 +251,7 @@ Return path to project root.
 
 #### <a id="cask-file"></a>cask-file `(bundle)`
 
-Return path to project `Cask`-file.
+`Cask`-file의 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-file bundle) ;; => "/path/to/Cask"
@@ -268,7 +259,7 @@ Return path to project `Cask`-file.
 
 #### <a id="cask-files"></a>cask-files `(bundle)`
 
-Return list of project files.
+프로젝트 파일들의 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-files bundle) ;; => '("foo.el" "foo-core.el" ...)
@@ -276,15 +267,12 @@ Return list of project files.
 
 #### <a id="cask-add-dependency"></a>cask-add-dependency `(bundle name &rest args)`
 
-Add dependency with `name`.
+`name`이라는 이름을 가진 의존 라이브러리를 추가합니다.
 
-Last argument `args`, can be:
+마지막 인자인 `args`에는 아래와 같은 것들이 들어갈 수 있습니다.
 
-* A string specifying minimum version.
-* A plist specifying VCS fetcher options.
-  * `:ref` - Fetcher ref to checkout.
-  * `:branch` - Fetcher branch to checkout.
-  * `:files` - Only include files matching this pattern.
+* 최소 버전을 지정하는 문자열* VCS fetcher 옵션을 지정하는 plist  * `:ref` - 체크아웃하고자 하는 Fetcher ref.
+  * `:branch` - 체크아웃 하고자 하는 Fetcher 브랜치  * `:files` - 가져올 파일의 패턴(이 패턴에 일치하는 파일만 가져옵니다)
 
 {% highlight cl %}
 (cask-add-dependency bundle 'foo)
@@ -295,7 +283,7 @@ Last argument `args`, can be:
 
 #### <a id="cask-add-source"></a>cask-add-source `(bundle name-or-alias &optional url)`
 
-Add ELPA source.
+ELPA 소스를 추가합니다.
 
 {% highlight cl %}
 (cask-add-dependency bundle "name" "http://path.to.elpa/packages/")
@@ -304,7 +292,7 @@ Add ELPA source.
 
 #### <a id="cask-remove-source"></a>cask-remove-source `(bundle name)`
 
-Remove ELPA source.
+ELPA 소스를 삭제합니다.
 
 {% highlight cl %}
 (cask-remove-dependency bundle "name")
@@ -312,7 +300,7 @@ Remove ELPA source.
 
 #### <a id="cask-build"></a>cask-build `(bundle)`
 
-Byte compile project files.
+프로젝트 파일을 바이트 컴파일합니다.
 
 {% highlight cl %}
 (cask-build bundle)
@@ -320,7 +308,7 @@ Byte compile project files.
 
 #### <a id="cask-clean-elc"></a>cask-clean-elc `(bundle)`
 
-Remove byte compiled files.
+바이트 컴파일된 파일을 삭제합니다.
 
 {% highlight cl %}
 (cask-clean-elc bundle)
@@ -328,7 +316,7 @@ Remove byte compiled files.
 
 #### <a id="cask-links"></a>cask-links `(bundle)`
 
-Return list of links.
+링크 목록을 리턴합니다.
 
 {% highlight cl %}
 (cask-links bundle) ;; => '((foo "/path/to/too") (bar "/path/to/bar"))
@@ -336,7 +324,7 @@ Return list of links.
 
 #### <a id="cask-link"></a>cask-link `(bundle name source)`
 
-Create link with `name` to `source` path.
+`name`에서 `source` 경로를 향하는 링크를 생성합니다.
 
 {% highlight cl %}
 (cask-link bundle 'foo "/path/to/foo")
@@ -344,7 +332,7 @@ Create link with `name` to `source` path.
 
 #### <a id="cask-link-delete"></a>cask-link-delete `(bundle name)`
 
-Delete link with `name`.
+`name` 이름을 가진 링크를 삭제합니다.
 
 {% highlight cl %}
 (cask-delete-link bundle 'foo)
@@ -352,7 +340,7 @@ Delete link with `name`.
 
 #### <a id="cask-linked-p"></a>cask-linked-p `(bundle name)`
 
-Return true if link with `name` exist, false otherwise.
+`name` 이름을 가진 링크가 있으면 true를 리턴하고, 그렇지 않으면 false를 리턴합니다.
 
 {% highlight cl %}
 (cask-linked-p bundle 'foo)
@@ -360,8 +348,7 @@ Return true if link with `name` exist, false otherwise.
 
 #### <a id="cask-package"></a>cask-package `(bundle &optional target-dir)`
 
-Create an ELPA package of this project. Put package in directory
-called `dist` or `target-dir` if specified.
+현재 프로젝트를 ELPA 패키지로 만듭니다. 패키지를 `dist` 디렉토리로 옮기거나 `target-dir`가 지정되어 있으면 `target-dir`로 옮깁니다.
 
 {% highlight cl %}
 (cask-package bundle)

@@ -1,81 +1,60 @@
 ---
-title: Why Cask?
+title: 왜 Cask인가?
 layout: default
 permalink: why-cask.html
 ---
 
-## Why Cask?
+## 왜 Cask인가?
 
 ---
 
-This document explains why you should use Cask, both in your Emacs
-configuration and for Emacs Lisp package development.
+이 문서는 Cask가 Emacs 설정을 관리하거나 Emacs Lisp 패키지 개발하는 데 왜 필요한 지 설명합니다.
 
-### Emacs Lisp package development
+### Emacs Lisp 패키지 개발
 
-So, why should your Emacs Lisp project use Cask? Do you know why:
+자 그럼 왜 Emacs Lisp 프로젝트를 진행하는 데 Cask가 필요할까요?여러분은 이미 답을 알고있습니다.
 
-* Ruby projects have a `gemspec` file?
-* Node.js projects have a `package.json` file?
-* Clojure projects have a `project.clj` file?
-* Emacs Lisp projects have a `Cask` file?
+* Ruby 프로젝트에는 `Gemfile`이 있죠?* Node.js 프로젝트에는 `package.json`이 있죠?* Clojure 프로젝트에는 `project.clj`가 있죠?* Emacs Lisp 프로젝트에는 `Cask` 파일이 있죠?
 
-Actually, let me rephrase the last statement.
+마지막 문장을 조금 다듬어 보죠.
 
-* Some Emacs Lisp projects have a `Cask` file?
+* Emacs Lisp 프로젝트 중에는 `Cask` 파일이 있는 경우도 있죠?
 
-No, let's try that again.
+아뇨. 한 번 더.
 
-* Some Emacs Lisp projects does not have a `Cask` file?
+* Emacs Lisp 프로젝트 중에는 `Cask` 파일이 없는 경우도 있죠?
 
-I will argue that some Emacs Lisp projects may not benefit directly
-from using Cask. Those are the projects that:
+일부 Emacs Lisp 프로젝트는 Cask가 굳이 필요하지 않을 수도 있습니다. 아래의 프로젝트들이 그런 예입니다.
 
-* Does not have any dependencies
-* Does not have any tests
-* Does not care about consistency
-* Does not care about compiler warnings
-* Does not want to make it easy for contributors
+* 의존 라이브러리가 없는 프로젝트
+* 테스트가 없는 프로젝트
+* 일관성에 게의치 않는 프로젝트
+* 컴파일러 경고에 게의치 않는 프로젝트
+* 사람들이 참여에 무관심한 프로젝트
 
-So all in all, projects that are not worth using.
+하나 같이 사용하기 어려운 프로젝트들이죠.
 
-Emacs package development has improved drastically during the last
-couple of years. From single Emacs Lisp files uploaded to the Emacs
-Wiki, to high quality packages, using VCS, that are tested,
-installable via a package manager and more.
+Emacs 패키지 개발은 지난 몇년간 놀라울 정도로 발전했습니다. 예전에는 Emacs Lisp 파일 하나를 Emacs 위키에 업로드했습니다. 이런 상황에서 벗어나 이제는 VCS에 잘 완성된 패키지들이 올라고, 테스트도 하고, 나아가 패키지 매니저로 설치할 수 있는 등 많은 변화가 있었습니다.
 
-But there's one thing still missing and that is consistency. Note that
-*every* Ruby project has a `gemspec` file, *every* Node.js project has
-a `package.json` file and *every* Clojure project has a `project.clj`
-file.
+하지만 이러한 발전에도 불구하고 일관성에 대해서만은 여전히 발전이 없었습니다. *모든* Ruby 프로젝트에는 `gemspec` 파일이 있고, *모든* Node.js 프로젝트에는 `package.json` 파일이 있고, *모든* Clojure 프로젝트에는 `project.clj` 파일이 있습니다.
 
-In those environments, projects are structured, tested, packaged,
-compiled, released in the same way. If you find a new project and want
-to find out what dependencies it has, you will know exactly where to
-look. If you want to find the test for a specific feature, you know
-exactly where to look.
+이러한 환경 위에서 프로젝트는 일관성 있게 구성되며 일관성 있게 테스트되고 일관성 있게 패키징되고 일관성 있게 컴파일되며 일관성 있게 배포됩니다. 새로운 프로젝트를 찾아 이 프로젝트가 의존하고 있는 라이브러리를 확인하고자 할 때 어디에 이러한 정보가 있는 지는 항상 정해져있습니다. 특정 기능의 테스트를 찾고자 한 데도, 어디에 있는 지 뻔히 예상 가능합니다.
 
-For Emacs Lisp projects using Cask, this is true as well.
+Cask를 사용한다면 Emacs Lisp 프로젝트도 그렇게 됩니다.
 
-So, even if you feel that your Emacs Lisp project does not have direct
-benefit of using Cask, please do so any way. If not for you, do it for
-other Emacs Lisp developers.
+자신의 Emacs Lisp 프로젝트에 직접적인 필요가 없더라도 Cask는 필요합니다. 나뿐만 아니라 다른 Emacs Lisp 개발자들을 위해서 사용하시기 바랍니다.
 
-### Emacs configuration
+### Emacs 설정
 
-If you look at the majority of Emacs configurations out there, you
-will see a few different types setups. These are the major ones:
+여러 Emacs 설정을 보신 적이 있다면, 몇 가지 자주 사용되는 설정 방법이 있다는 걸 알고 있겠죠. 아래에서는 각각의 방법의 장단점을 살펴봅니다.
 
 #### El-get
 
-El-get is popular because is was created when there were no other good
-alternatives. Now there are and `package.el` is the standard solution,
-choosen by the Emacs core developers. El-get did a good job once, but
-is nowadays obsolete. Let's keep to the standard way of doing things!
+El-get이 나왔을 때는 다른 대안이 없었기에 금방 유명해질 수 있었습니다. 지금은 대안은 물론 Emacs 개발팀이 선택한 `package.el`이라는 표준적인 도구가 있습니다El-get은 훌륭한 도구였지만 지금은 오래된 도구입니다. 표준적인 방법을 사용하시길 바랍니다!
 
-#### Using package.el directly
+#### package.el 직접 사용하기
 
-It usually looks something like this:
+`package.el`은 보통 다음과 같이 사용됩니다.
 
 {% highlight cl %}
 (require 'package)
@@ -87,23 +66,16 @@ It usually looks something like this:
  '(s f dash flycheck prodigy ...))
 {% endhighlight %}
 
-I did something like this in my configuration once as well, but I no
-longer have to, because Cask exists.
+저도 한 때는 이러한 방식을 사용했습니다. 이제는 Cask가 있기 때문에 이런 방식은 사용하지 않습니다.
 
-#### Submodules
+#### 서브 모듈
 
-I have over 60 packages in my Emacs configuration. Can you imagine how
-much work it would require to keep all of those up to date?
+제 Emacs 설정 파일에는 60개 이상의 패키지가 정의되어 있습니다. 이 정도 개수의 패키지들을 서브모듈 기능으로 최신버전으로 관리한다고 하면, 상상이나 가시나요?
 
-#### Bundled packages
+#### 번들된 패키지(의존 라이브러리를 포함한 패키지)
 
-This has the same "keeping up to date" issue as the submodules
-approach. But it's even worse. Storing dependencies as part of the
-repository is madness. I shouldn't have to explain why.
+이 방법은 서브모듈을 통한 접근과 마찬가지로 최신 버전을 유지하는 데 애로사항이 따릅니다. 상황은 더 나쁩니다. 의존 라이브러리들을 패키지 저장소에 포함 시켜놓는 건 사람을 미치게 만듭니다. 제가 굳이 설명할 필요 없겠죠?
 
 #### Cask
 
-This is obviously what we want. All it is, is a single file that
-declares a list of dependencies. You know where to look if you want to
-find out what dependencies a configuration has and it's easy to keep
-packages up to date.
+우리가 원하던 건 바로 이겁니다. Cask를 통해 모든 의존 라이브러리를 하나의 파일에 정의하고 관리할 수 있습니다. 의존 라이브러리와 그 설정이 어디있는지 쉽게 찾을 수 있을 뿐 아니라 최신 버전으로 업그레이드하는 것도 쉽습니다.
