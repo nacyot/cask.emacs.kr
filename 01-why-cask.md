@@ -14,15 +14,21 @@ permalink: why-cask.html
 
 자 그럼 왜 Emacs Lisp 프로젝트를 진행하는 데 Cask가 필요할까요?여러분은 이미 답을 알고있습니다.
 
-* Ruby 프로젝트에는 `Gemfile`이 있죠?* Node.js 프로젝트에는 `package.json`이 있죠?* Clojure 프로젝트에는 `project.clj`가 있죠?* Emacs Lisp 프로젝트에는 `Cask` 파일이 있죠?
+* Ruby 프로젝트에는 `Gemfile`이 있죠?
+* Node.js 프로젝트에는 `package.json`이 있죠?
+* Clojure 프로젝트에는 `project.clj`가 있죠?
+* Emacs Lisp 프로젝트에는 `Cask` 파일이 있죠?
+
 
 마지막 문장을 조금 다듬어 보죠.
 
 * Emacs Lisp 프로젝트 중에는 `Cask` 파일이 있는 경우도 있죠?
 
+
 아뇨. 한 번 더.
 
 * Emacs Lisp 프로젝트 중에는 `Cask` 파일이 없는 경우도 있죠?
+
 
 일부 Emacs Lisp 프로젝트는 Cask가 굳이 필요하지 않을 수도 있습니다. 아래의 프로젝트들이 그런 예입니다.
 
