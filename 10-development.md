@@ -8,7 +8,7 @@ permalink: development.html
 
 ---
 
-Cask 개발은 Github에서 관리되고 있습니다. 개발과 관련된 논의는 구글 그룹 <https://groups.google.com/forum/#!forum/cask-dev>을 통해서 이루어집니다.
+Cask 개발은 GitHub에서 관리되고 있습니다. 개발과 관련된 논의는 구글 그룹 <https://groups.google.com/forum/#!forum/cask-dev>을 통해서 이루어집니다.
 
 ### 기여하기
 
@@ -38,4 +38,4 @@ $ make ecukes
 $ make test
 {% endhighlight %}
 
-모든 테스트가 통과되면 변경사항을 [풀리퀘스트](https://github.com/cask/cask/pulls)로 보내주세요. 개발은 주로 WIP 브랜치에서 진행되고 있으며 풀리퀘스트는 이 브랜치로 보내주셔야합니다. 브랜치 이름은 `v{MAJOR}.{MINOR}-wip` 형식을 따릅니다. 만약 해당하는 브랜치가 없으면 `master` 브랜치로 풀리퀘스트를 보내주세요.
+모든 테스트가 통과되면 변경사항을 [풀 리퀘스트](https://github.com/cask/cask/pulls)로 보내주세요. 개발은 주로 WIP 브랜치에서 진행되고 있으며 풀 리퀘스트는 이 브랜치로 보내주셔야합니다. 브랜치 이름은 `v{MAJOR}.{MINOR}-wip` 형식을 따릅니다. 만약 해당하는 브랜치가 없으면 `master` 브랜치로 풀 리퀘스트를 보내주세요.
