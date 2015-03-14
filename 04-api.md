@@ -54,7 +54,7 @@ permalink: api.html
 
 #### <a id="cask-setup"></a>cask-setup `(project-path)`
 
-`project-path`에  `bundle` 객체를 생성합니다. `cask-setup`은 패키지를 관리하는데 사용합니다. Emacs 설정을 할 때는 `cask-initialize`을 사용하세요.
+`project-path`에 `bundle` 객체를 생성합니다. `cask-setup`은 패키지를 관리하는데 사용합니다. Emacs 설정을 할 때는 `cask-initialize`을 사용하세요.
 
 {% highlight cl %}
 (let ((bundle (cask-setup "/path/to/project")))
@@ -159,7 +159,7 @@ Cask 버전을 리턴합니다.
 
 #### <a id="cask-elpa-path"></a>cask-elpa-path `(bundle)`
 
-elpa 디렉토리 경로를 리턴합니다.
+elpa 디렉터리 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-elpa-path bundle) ;; => "/path/to/.cask/24.3.1/elpa"
@@ -243,7 +243,7 @@ elpa 디렉토리 경로를 리턴합니다.
 
 #### <a id="cask-path"></a>cask-path `(bundle)`
 
-프로젝트 루트 디렉토리 경로를 리턴합니다.
+프로젝트 루트 디렉터리 경로를 리턴합니다.
 
 {% highlight cl %}
 (cask-path bundle) ;; => "/path/to"
@@ -271,8 +271,11 @@ elpa 디렉토리 경로를 리턴합니다.
 
 마지막 인자인 `args`에는 아래와 같은 것들이 들어갈 수 있습니다.
 
-* 최소 버전을 지정하는 문자열* VCS fetcher 옵션을 지정하는 plist  * `:ref` - 체크아웃하고자 하는 Fetcher ref.
-  * `:branch` - 체크아웃 하고자 하는 Fetcher 브랜치  * `:files` - 가져올 파일의 패턴(이 패턴에 일치하는 파일만 가져옵니다)
+* 최소 버전을 지정하는 문자열
+* VCS fetcher 옵션을 지정하는 plist
+  * `:ref` - 체크아웃하고자 하는 Fetcher ref.
+  * `:branch` - 체크아웃 하고자 하는 Fetcher 브랜치
+  * `:files` - 가져올 파일의 패턴(이 패턴에 일치하는 파일만 가져옵니다)
 
 {% highlight cl %}
 (cask-add-dependency bundle 'foo)
@@ -348,10 +351,9 @@ ELPA 소스를 삭제합니다.
 
 #### <a id="cask-package"></a>cask-package `(bundle &optional target-dir)`
 
-현재 프로젝트를 ELPA 패키지로 만듭니다. 패키지를 `dist` 디렉토리로 옮기거나 `target-dir`가 지정되어 있으면 `target-dir`로 옮깁니다.
+현재 프로젝트를 ELPA 패키지로 만듭니다. 패키지를 `dist` 디렉터리로 옮기거나 `target-dir`가 지정되어 있으면 `target-dir`로 옮깁니다.
 
 {% highlight cl %}
 (cask-package bundle)
 (cask-package bundle "/path/to/dist")
 {% endhighlight %}
-

@@ -8,7 +8,7 @@ permalink: examples.html
 
 ---
 
-아래는 `Cask`파일 예제입니다.
+아래는 `Cask` 파일 예제입니다.
 
 ### Emacs 설정
 
@@ -43,7 +43,7 @@ permalink: examples.html
  (depends-on "ert-runner"))
 {% endhighlight %}
 
-### 실제로 사용되는 예제를 보고싶다면
+### 실제로 사용되는 예제를 보고 싶다면
 
 아래 프로젝트들은 의존 라이브러리를 Cask로 관리하고 있습니다.
 

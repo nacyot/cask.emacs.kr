@@ -20,7 +20,7 @@ $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
 $ git clone https://github.com/cask/cask.git ~/.cask
 {% endhighlight %}
 
-Mac OSX 사용자라면 Homebrew로 설치할 수도 있습니다.
+Mac OS X 사용자라면 Homebrew로 설치할 수도 있습니다.
 
 {% highlight bash %}
 $ brew install cask
